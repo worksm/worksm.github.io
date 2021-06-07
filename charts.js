@@ -2,7 +2,7 @@ function init() {
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset")
   // Use the list of sample names to populate the select options
-  d3.json("data/samples.json").then((data) => {
+  d3.json("../data/samples.json").then((data) => {
     var sampleNames = data.names;
     sampleNames.forEach((sample) => {
       selector
@@ -25,7 +25,7 @@ function optionChanged(newSample) {
 }
 // Demographics Panel 
 function buildMetadata(sample) {
-  d3.json("data/samples.json").then((data) => {
+  d3.json("../data/samples.json").then((data) => {
     var metadata = data.metadata;
     // Filter the data for the object with the desired sample number
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
@@ -45,7 +45,7 @@ function buildMetadata(sample) {
 // 1. Create the buildCharts function.
   function buildCharts(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
-  d3.json("data/samples.json").then((data) => {
+  d3.json("../data/samples.json").then((data) => {
     var metadata = data.metadata;
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
     var result2 = resultArray[0];
@@ -97,7 +97,7 @@ function buildMetadata(sample) {
       marker: {
         color: otu_ids,
         size: sample_values,
-        colorscale: "Earth"
+        colorscale: "Portland"
       }
     }
   ];
@@ -133,7 +133,7 @@ function buildMetadata(sample) {
     height: 400,
     margin: { t: 25, r: 25, l: 25, b: 25 },
     paper_bgcolor: "white",
-    font: { color: "black", family: "Arial" }
+    font: { color: "black", family: "Helvetica" }
   };
   // 6. Use Plotly to plot the gauge data and layout.
   Plotly.newPlot('gauge', gaugedata, layout);
